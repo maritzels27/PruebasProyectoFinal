@@ -38,6 +38,11 @@ public class PruebaProyectoFinal {
     driver.findElement(By.xpath("//div[3]/div[2]/div")).click();
     driver.findElement(By.xpath("//div[2]/div[2]")).click();
     driver.findElement(By.xpath("//form/button")).click();
+    pause(5000);
+    WebElement agregar=driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/form/div[4]/div/p"));
+    String textoEjecucion = agregar.getText();
+    assertEquals("Successfully added!",textoEjecucion);
+     // Warning: assertTextPresent may require manual changes
     // Warning: assertTextPresent may require manual changes
   }
   @Test
@@ -60,6 +65,33 @@ public class PruebaProyectoFinal {
     driver.findElement(By.xpath("//div[3]/button")).click();
     // Warning: assertTextNotPresent may require manual changes
     assertFalse(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]prueba@prueba\\.com[\\s\\S]$"));
+  }
+  
+  @Test
+  public void testModificarMernCrud() throws Exception {
+    driver.get("https://mern-crud.herokuapp.com/");
+    driver.findElement(By.xpath("//div[@id='root']/div/div[2]/button")).click();
+    driver.findElement(By.name("name")).click();
+    driver.findElement(By.name("name")).clear();
+    driver.findElement(By.name("name")).sendKeys("Prueba modificar");
+    driver.findElement(By.name("email")).clear();
+    driver.findElement(By.name("email")).sendKeys("pruebamodificar@prueba.com");
+    driver.findElement(By.name("age")).clear();
+    driver.findElement(By.name("age")).sendKeys("29");
+    driver.findElement(By.xpath("//div[3]/div[2]/div")).click();
+    driver.findElement(By.xpath("//div[2]/span")).click();
+    driver.findElement(By.xpath("//form/button")).click();
+    driver.findElement(By.xpath("//i")).click();
+    driver.findElement(By.xpath("//div[@id='root']/div/div[2]/table/tbody/tr/td[5]/button")).click();
+    driver.findElement(By.name("name")).click();
+    driver.findElement(By.name("name")).clear();
+    driver.findElement(By.name("name")).sendKeys("editar");
+    driver.findElement(By.xpath("//form/button")).click();
+    // Warning: assertTextPresent may require manual changes
+    pause(5000);
+    WebElement editar=driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/form/div[4]/div/p"));
+    String textoEjecucionModificar = editar.getText();
+    assertEquals("Successfully updated!",textoEjecucionModificar);
   }
 
   @After
@@ -102,5 +134,12 @@ public class PruebaProyectoFinal {
     } finally {
       acceptNextAlert = true;
     }
+  }
+  private void pause(long mils) {
+	  try {
+		  Thread.sleep(mils);
+	  }catch(Exception e){
+		  e.printStackTrace();
+	  }
   }
 }
