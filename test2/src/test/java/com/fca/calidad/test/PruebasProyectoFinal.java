@@ -9,7 +9,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class PruebaProyectoFinal {
+public class PruebasProyectoFinal {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -38,7 +38,7 @@ public class PruebaProyectoFinal {
     driver.findElement(By.xpath("//div[3]/div[2]/div")).click();
     driver.findElement(By.xpath("//div[2]/div[2]")).click();
     driver.findElement(By.xpath("//form/button")).click();
-    pause(5000);
+    pause(6000);
     WebElement agregar=driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/form/div[4]/div/p"));
     String textoEjecucion = agregar.getText();
     assertEquals("Successfully added!",textoEjecucion);
